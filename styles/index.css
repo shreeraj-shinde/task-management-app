@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #afb2b4 !important;
+}
+
+.add--new-btn-mobile-only {
+  padding: 8px 16px;
+  bottom: 0;
+  right: 0;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  display: none;
+}
+
+@media (max-width: 990px) {
+  .add--new-btn-mobile-only {
+    display: flex;
+  }
+}

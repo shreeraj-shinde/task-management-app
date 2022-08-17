@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body onLoad = "LoadLocalStorage()">
+    <!-- MODAL CODE -->
+      <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Task</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="imageUrl" class="form-lable">Image URL</label>
+                  <input type="url" name="imageUrl" id="imageUrl" class="form-control" placeholder="http//example.com/image.png">
+                </div>
+
+                <div class="mb-3">
+                  <label for="taskTitle" class="form-lable">Task Title</label>
+                  <input type="text" name="taskTitle" id="taskTitle" class="form-control" placeholder="Learn Artifiacial Intelligence" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="tags" class="form-lable">Task Type</label>
+                  <input type="text" name="tags" id="tags" class="form-control" placeholder="Work...."
+                    required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="taskDesc" class="form-lable">Task Description</label>
+                  <textarea rows="4" name="taskDesc" id="taskDesc" class="form-control" placeholder="Description about your task" required></textarea> </textarea>
+                </div>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button  type="button"  class="btn btn-primary" onclick="handleSubmit()">Save changes</button>
+              </form>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" type="submit" class="btn btn-primary">Save changes</button>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- MODAL CODE ENDS HERE -->
+       <!--SHOW TASK MODAL BODY -->
+        <div class="modal fade" id="showTasks" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="showTasksLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="showTasksLabel">Task Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body task--modal-body">
+               
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--SHOW TASK MODAL BODY CODE ENDS HERE -->
+    <div class="add--new-btn-mobile-only">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"><i
+          class="fa-solid fa-plus me-2"></i>Add New</button>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand text-light" href="#">Tasky</a>
+        <button class="navbar-toggler btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+            </li>
+          </ul>
+          <!-- <form class="d-flex" role="search"> -->
+            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"><i class="fa-solid fa-plus me-2"></i>Add New</button>
+          <!-- </form> -->
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <section class = "mt-4">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="input-group flex-nowrap shadow-lg rounded">
+              <input type="search" class="form-control" placeholder="Search Task Here" aria-label="Search task"/> 
+              <span class="input-group-text"><i class="fa fa-search"></i></span>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+
+      <section class="mt-4">
+        <div class="row task--content">
+          
+        </div>
+      </section>
+    </div>
+
+    
+    <script src="scripts/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="col-lg-6 col-md-4" id="${id}" key="${id}">
+      <div class="card shadow-sm task--card">
+        <div class="card-header d-flex justify-content-end task--card-header">
+          <button class="btn btn-outline-info mr-2" type="button" name="${id}">
+            <i class="fa-solid fa-pencil"></i>
+          </button>
+          <button
+            class="btn btn-outline-danger mr-2"
+            type="button"
+            name="${id}"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          ${ url && `<img src="${url}" alt="card image" class="card--image" />`
+          }
+          <h4 class="task--card-title">${title}</h4>
+          <p
+            class="description trim-3-lines text-muted"
+            data-gram_editor="false"
+          >
+            ${description}
+          </p>
+          <div class="text-white tags d-flex flex-wrap">
+            <span class="badge bg-primary m-1">${type}</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button
+            type="button"
+            class="btn btn-outline-primary float-right"
+            data-bs-toggle="modal"
+            data-bs-target="#showTasks"
+          >
+            Open Task
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
